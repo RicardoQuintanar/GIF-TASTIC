@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    background: rgb(172, 19, 19);
+  }
+  
+  #main-container {
+    border: black 3px solid;
+    margin: 10px;
+    padding: 10px
+  }
+    
+    div,
+    form{
+  margin: 10px;
+    }
+
+    button{
+        background:goldenrod;
+    }
