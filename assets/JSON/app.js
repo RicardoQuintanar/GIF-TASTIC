@@ -10,12 +10,14 @@ $("button").on("click", function () {
     })
 
         .then(function (response) {
+            console.log(response)
             var results = response.data;
             var gifys = [""];
             for (var i = 0; i < results.length; i++) {
                 // Creating a paragraph tag with the result item's rating
                 if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                     var gifDiv = $("<div>");
+                    
 
                     // Storing the result item's rating
                     var rating = results[i].rating;
