@@ -1,8 +1,11 @@
 // Event listener for all buttons that are being called on
 
 $("button").on("click", function () {
-    var random = $(this).attr("data-random");
-    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=S2MKuo20HTL8sVMNYczgazbLAqyaZFyv&tag=&rating=G";
+    var movie = ($(this).attr("data-type"));
+    var url = "http//:api.giphy.com/v1/gifs/search?q=";
+    var queryURL = url + movie + key + numOfResults;
+    var key= "S2MKuo20HTL8sVMNYczgazbLAqyaZFyv"; 
+    var numOfResults = "&limit=25";
 
     $.ajax({
         url: queryURL,
@@ -12,8 +15,8 @@ $("button").on("click", function () {
         .then(function (response) {
             console.log(response)
             var results = response.data;
-            var gifys = [""];
-            for (var i = 0; i < results.length; i++) {
+            var gifys = ["Zoolander, Super Troopers"];
+            for (var i = 0; i < results.data.length; i++) {
                 // Creating a paragraph tag with the result item's rating
                 if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                     var gifDiv = $("<div>");
@@ -46,6 +49,10 @@ $("button").on("click", function () {
                 // This line will grab the text from the input box
                 var gify = $("#gify-input").val().trim();
                 gifys.push(gify);
+
+
+
+    
 
             });
 
