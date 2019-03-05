@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("button").on("click", function () {
       var random = $(this).attr("data-random");
       console.log('random:', random)
-      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + random + "&api_key=dc6zaTOxFJmzC&limit=5";
+      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + random + "&api_key=dc6zaTOxFJmzC&limit=10";
   
       $.ajax({
         url: queryURL,
@@ -42,8 +42,6 @@ $(document).ready(function () {
               // Setting the src attribute of the image to a property pulled off the result item
               // gifys.attr("src", results[i].images.fixed_height.url);
               // gifDiv.append(p);
-              // gifDiv.append(gifys);
-              // $("#images").prepend(gifys);
               
             };
           };
