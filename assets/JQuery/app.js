@@ -29,7 +29,7 @@ $(document).ready(function () {
         $("#images").empty()
         var random = $(this).attr("data-random");
         console.log('random:', random)
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + random + "&api_key=dc6zaTOxFJmzC&limit=10&rating=g";
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + random + "&api_key=dc6zaTOxFJmzC&limit=10&rating=g";
 
         $.ajax({
             url: queryURL,
