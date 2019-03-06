@@ -9,14 +9,24 @@ $(document).ready(function () {
             var button = $("<button>");
             button.text(buttons[i])
             button.attr("data-random", buttons[i])
+            button.addClass("gif-button");
             $("#gif-buttons").append(button);
 
         }
         
 
     }
+    // add gif button
+    $("#add-gify").on("click", function (event) {
+        event.preventDefault();
+        var newButton = $("#gify-input").val()
+        console.log(newButton);
+        buttons.push(newButton);
+        renderButtons()
+    });
 
-    $("button").on("click", function () {
+    $(document).on("click",".gif-button", function () {
+        $("#images").empty()
         var random = $(this).attr("data-random");
         console.log('random:', random)
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + random + "&api_key=dc6zaTOxFJmzC&limit=10&rating=g";
@@ -28,7 +38,7 @@ $(document).ready(function () {
             console.log(response)
             var results = response.data;
             console.log('results:', results)
-            
+
             for (var i = 0; i < response.data.length; i++) {
 
                 var gifUrl = results[i].images.fixed_height.url;
@@ -52,30 +62,7 @@ $(document).ready(function () {
                 $("#images").prepend(gifDiv);
 
             };
-
-// add gif button
-            $("#add-gify").on("click", function (event) {
-                event.preventDefault();
-                $("#gify-view").empty();
-
-                for (var i = 0; i < gifys.length; i++) {
-                    // Then dynamicaly generating buttons for each movie in the array.
-                    var a = $("<button>");
-                    // Adding a class
-                    a.addClass("gify");
-                    a.attr("data-name", gifys[i]);
-                    a.text(gifys[i]);
-                    $("#gify-view").append(a);
-                }
-
-                // This line will grab the text from the input box
-                var gify = $("#gify-input").val().trim();
-                gifys.push(gify);
-
-            });
-
         });
     });
-
     renderButtons()
 });
