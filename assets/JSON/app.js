@@ -41,10 +41,12 @@ $(document).ready(function () {
 
             for (var i = 0; i < response.data.length; i++) {
 
-                var gifUrl = results[i].images.fixed_height.url;
+                var gifStill = results[i].images.fixed_height_still.url;
+                var gifAnimate = results[i].images.fixed_height.url;
 
 
                 var rating = results[i].rating;
+                var gifImage = $("<img class='gif'>");
 
 
                 //Creating the attribute for still and animate
@@ -52,11 +54,10 @@ $(document).ready(function () {
                 gifImage.attr("url-animate", gifAnimate);
                 gifImage.attr("url-still", gifStill);
                 gifImage.attr("data-state", "still");
+                gifImage.addClass(".gif")
                 // Creating an image element for each gif
 
-                var gifImage = $("<img class='gif'>");
-                // Attaching URL to each image element
-                gifImage.attr("src", gifUrl);
+                
                 // creating p tag with rating text
                 var ratingText = $("<p>").text(rating);
                 // div to hold gif and rating
@@ -67,20 +68,20 @@ $(document).ready(function () {
 
                 $("#images").prepend(gifDiv);
 
-
             };
         });
-        $("#images").on("click", function () {
-            var state = $(this).attr("data-state");
-            if (state === "still") {
-                $(this).attr("src", $(this).attr("url-animate"));
-                $(this).attr("data-state", "animate");
-            } else {
-                $(this).attr("src", $(this).attr("url-still"));
-                $(this).attr("data-state", "still");
-            }
-
-        });
     });
+    $(document).on("click", ".gif", function () {
+        var state = $(this).attr("data-state");
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("url-animate"));
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", $(this).attr("url-still"));
+            $(this).attr("data-state", "still");
+        }
+
+    });
+
     renderButtons()
 });
